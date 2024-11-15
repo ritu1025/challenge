@@ -33,7 +33,7 @@ public class AccountsService {
     return this.accountsRepository.getAccount(accountId);
   }
   // Transfer Money
-  public synchronized void transferMoney(String accountFromId, String accountToId, double amount, NotificationService notificationService) {
+  public void transferMoney(String accountFromId, String accountToId, double amount, NotificationService notificationService) {
     ReentrantLock lockFrom = accountLocks.computeIfAbsent(accountFromId, id -> new ReentrantLock());
     ReentrantLock lockTo = accountLocks.computeIfAbsent(accountToId, id -> new ReentrantLock());
 
